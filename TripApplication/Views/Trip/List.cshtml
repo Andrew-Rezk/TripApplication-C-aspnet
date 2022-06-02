@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TripApplication.Models.Trip>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach(var trip in Model)
+{
+<h2>@trip.TripName</h2>
+<div>@trip.TripCountry</div>
+}
