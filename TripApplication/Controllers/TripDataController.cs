@@ -30,7 +30,7 @@ namespace TripApplication.Controllers
                 TripName = a.TripName,
                 TripCountry = a.TripCountry,
                 TripDate = a.TripDate,
-                TripNotes = a.TripNotes.NoteName
+                TripNotes = a.TripNotes
             }));
             return TripDtos;
         }
@@ -48,7 +48,7 @@ namespace TripApplication.Controllers
                 TripName = Trip.TripName,
                 TripCountry = Trip.TripCountry,
                 TripDate = Trip.TripDate,
-                TripNotes = Trip.TripNotes.NoteName
+                TripNotes = Trip.TripNotes
             };
             if (Trip == null)
             {

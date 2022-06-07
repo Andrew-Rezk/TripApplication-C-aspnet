@@ -28,7 +28,7 @@ namespace TripApplication.Models
         public string TripCountry { get; set; }
         public DateTime TripDate { get; set; }
        
-        public string TripNotes { get; set; }
+        public TripNotes TripNotes { get; set; }
 
     }
 }
