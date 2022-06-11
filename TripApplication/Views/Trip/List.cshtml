@@ -6,8 +6,6 @@
 <h2>List</h2>
 @foreach(var trip in Model)
 {
-<h2>@trip.TripName</h2>
-<div>@trip.TripCountry</div>
-<div>@trip.TripDate</div>
-<div>@trip.TripNotes.NoteName</div>
+<h2><a href="/trip/details/@trip.TripID"@trip.TripName</h2>
+<div>@trip.TripName</div>
 }

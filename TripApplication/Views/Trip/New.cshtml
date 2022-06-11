@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Trip</h2>
+<form action="/Trip/Create" method="POST">
+    <div>
+        <label>Trip Name:</label><input name="TripName" type="text" />
+    </div>
+    <div>
+        <label>Trip Countries:</label><input name="TripCountry" type="text" />
+    </div>
+    <div>
+        <label>Trip Date:</label><input name="TripDate" type="text" />
+    </div>
+    <div>
+        <label>Notes:</label><input name="TripNotes" type="text" />
+    </div>
+    <div>
+        <input type="submit" value="Add Trip" />
+    </div>
+</form>
+

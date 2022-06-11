@@ -87,7 +87,7 @@ namespace TripApplication.Controllers
                 if (!TripExists(id))
                 {
                     return NotFound();
-                    Debug.WriteLine("trip not found");
+                    
                 }
                 else
                 {

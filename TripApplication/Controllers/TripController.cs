@@ -5,26 +5,30 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using TripApplication.Models;
 
 namespace TripApplication.Controllers
 {
     public class TripController : Controller
     {
+        private static readonly HttpClient client;
+
+        static TripController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44326/api/TripData/");
+        }
         // GET: Trip/List
         public ActionResult List()
         {
-            //objective: communicate with trip data api to retrieve a list of animals
+            //objective: communicate with trip data api to retrieve a list of trips
             // curl https://localhost:44326/api/TripData/ListTrips
-            HttpClient client = new HttpClient() { };
-            string url = "https://localhost:44326/api/TripData/ListTrips";
+            
+            string url = "listtrips";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("the response code is");
-            Debug.WriteLine(response.StatusCode);
-
             IEnumerable<Trip> trips = response.Content.ReadAsAsync<IEnumerable<Trip>>().Result;
-
 
             return View(trips);
         }
@@ -32,29 +36,40 @@ namespace TripApplication.Controllers
         // GET: Trip/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            //objective: communicate with trip data api to retrieve one trip
+            // curl https://localhost:44326/api/TripData/findtrip/{id}
+            HttpClient client = new HttpClient() { };
+            string url = "https://localhost:44326/api/TripData/findtrip/" +id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
+
+            return View(selectedtrip);
         }
 
-        // GET: Trip/Create
-        public ActionResult Create()
+        // GET: Trip/New
+        public ActionResult New()
         {
             return View();
         }
 
         // POST: Trip/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Trip trip)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            string url = "https://localhost:44326/api/TripData/addtrip";
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonpayload = jss.Serialize(trip);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            
+            client.PostAsync(url, content);
+
+            return RedirectToAction("list");
         }
 
         // GET: Trip/Edit/5

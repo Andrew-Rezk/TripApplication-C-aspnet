@@ -1,0 +1,11 @@
+﻿@model TripApplication.Models.TripDto
+
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/trip/list">Go back to List</a>
+<h2>@Model.TripName</h2>
+<div>@Model.TripCountry</div>
+<div>@Model.TripDate</div>
+<div>@Model.TripNotes.NoteName</div>
