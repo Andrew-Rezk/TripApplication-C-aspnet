@@ -13,6 +13,7 @@ namespace TripApplication.Controllers
     public class TripController : Controller
     {
         private static readonly HttpClient client;
+        JavaScriptSerializer jss = new JavaScriptSerializer();
 
         static TripController()
         {
@@ -59,7 +60,7 @@ namespace TripApplication.Controllers
         {
             string url = "https://localhost:44326/api/TripData/addtrip";
 
-            JavaScriptSerializer jss = new JavaScriptSerializer();
+            
             string jsonpayload = jss.Serialize(trip);
 
             Debug.WriteLine(jsonpayload);
@@ -75,45 +76,46 @@ namespace TripApplication.Controllers
         // GET: Trip/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "https://localhost:44326/api/TripData/findtrip/" +id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
+            return View(selectedtrip);
         }
 
-        // POST: Trip/Edit/5
+        // POST: Trip/update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult update(int id, Trip trip)
         {
-            try
-            {
-                // TODO: Add update logic here
+            string url = "https://localhost:44326/api/TripData/updatetrip/" +id;
+            string jsonpayload = jss.Serialize(trip);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("list");
         }
 
         // GET: Trip/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "https://localhost:44326/api/TripData/findtrip/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
+            return View(selectedtrip);
+            
         }
 
         // POST: Trip/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            string url = "https://localhost:44326/api/TripData/deletetrip/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            return RedirectToAction("List");
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model TripApplication.Models.ViewModels.UpdateTrip
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Trip</h2>
+<form action="/Trip/Update/@Model.SelectedTrip.TripID" method="POST">
+    <div style="display:none;">
+        <input type="text" name="AnimalID" value="@Model.SelectedTrip.TripID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="TripName" value="@Model.SelectedTrip.TripName" />
+    </div>
+    <div>
+        <label>Trip Countries:</label> <input type="text" name="TripCountry" value="@Model.SelectedTrip.TripCountry" />
+    </div>
+    <div>
+        <label>Trip Date:</label> <input type="text" name="TripDate" value="@Model.SelectedTrip.TripDate" />
+    </div>
+    <div>
+        <label>Trip Notes:</label> <input type="text" name="TripNotes" value="@Model.SelectedTrip.TripNotes" />
+    </div>
+    <div>
+        <input type="submit" value="Update Trip" />
+
+    </div>
+</form>

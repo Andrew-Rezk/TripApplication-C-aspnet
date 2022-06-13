@@ -201,12 +201,17 @@
     <Compile Include="Migrations\202206021851149_trip-notes.designer.cs">
       <DependentUpon>202206021851149_trip-notes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206110348356_update.cs" />
+    <Compile Include="Migrations\202206110348356_update.designer.cs">
+      <DependentUpon>202206110348356_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\TripNotes.cs" />
+    <Compile Include="Models\ViewModels\UpdateTrip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -270,9 +275,13 @@
     <Content Include="Views\Trip\List.cshtml" />
     <Content Include="Views\Trip\Details.cshtml" />
     <Content Include="Views\Trip\New.cshtml" />
+    <Content Include="Views\Trip\Error.cshtml" />
+    <Content Include="Views\Trip\Edit.cshtml" />
+    <Content Include="Views\Trip\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UpdateTrip\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -296,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206021851149_trip-notes.resx">
       <DependentUpon>202206021851149_trip-notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206110348356_update.resx">
+      <DependentUpon>202206110348356_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
