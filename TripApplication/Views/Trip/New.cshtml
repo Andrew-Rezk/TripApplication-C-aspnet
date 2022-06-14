@@ -3,23 +3,27 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Trip</h2>
-<a href="/trip/list">Back to List</a>
+<h2>New Trip</h2>
+<a href="/trip/list" class="btn btn-primary a-btn">Back to List</a>
 <form action="/Trip/Create" method="POST">
     <div>
-        <label>Trip Name:</label><input name="TripName" type="text" />
+        <label>Trip Name:</label>
+        <input name="TripName" type="text" />
     </div>
     <div>
-        <label>Trip Countries:</label><input name="TripCountry" type="text" />
+        <label>Trip Countries:</label>
+        <input name="TripCountry" type="text" />
     </div>
     <div>
-        <label>Trip Date:</label><input name="TripDate" type="text" />
+        <label>Trip Date:</label>
+        <input name="TripDate" type="text" />
     </div>
     <div>
-        <label>Notes:</label><input name="TripNotes.NoteName" type="text" />
+        <label>Notes:</label>
+        <input name="TripNotes.NoteName" type="text" />
     </div>
     <div>
-        <input type="submit" value="Add Trip" />
+        <input type="submit" value="Add Trip" class="btn btn-primary a-btn"/>
     </div>
 </form>
 

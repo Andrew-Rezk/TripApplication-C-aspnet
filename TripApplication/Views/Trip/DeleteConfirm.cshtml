@@ -4,13 +4,13 @@
 }
 
 <h2>Are you sure you want to delete this trip?</h2>
-<a href="/trip/List">Cancel</a>
+<a href="/trip/List" class="btn btn-primary a-btn">Cancel</a>
 <h2>@Model.TripName</h2>
 <div>Country: @Model.TripCountry </div>
 <div>Date: @Model.TripDate</div>
 <div>Notes: @Model.TripNotes</div>
 <form action="/Trip/Delete/@Model.TripID" method="POST">
-    <input type="submit" value="Confirm Delete" />
+    <input type="submit" value="Delete" class="btn btn-primary a-btn"/>
 
 </form>
 

@@ -3,12 +3,13 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2 class="h2-title">My Trips</h2>
 
-<a href="/trip/new">New Trip</a>
+<a href="/trip/new" class="btn btn-primary a-btn">New Trip</a>
 
 @foreach(var trip in Model)
 {
 <h2><a href="/trip/details/@trip.TripID"@trip.TripName</h2>
 <div>@trip.TripName</div>
 }
+

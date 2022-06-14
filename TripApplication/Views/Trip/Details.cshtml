@@ -4,9 +4,9 @@
     ViewBag.Title = "View";
 }
 
-<div><a href="/trip/list">Go back to List</a></div>
-<div><a href="/trip/edit/@Model.TripID">Edit</a></div>
-<div><a href="/trip/deleteconfirm/@Model.TripID">Delete</a></div>
+<a href="/trip/list" class="btn btn-primary a-btn">Go back to List</a>
+<a href="/trip/edit/@Model.TripID" class="btn btn-primary a-btn">Edit</a>
+<a href="/trip/deleteconfirm/@Model.TripID" class="btn btn-primary a-btn">Delete</a>
 <h2>@Model.TripName</h2>
 <div>@Model.TripCountry</div>
 <div>@Model.TripDate</div>
