@@ -6,7 +6,7 @@
 <h2>Update Trip</h2>
 <form action="/Trip/Update/@Model.SelectedTrip.TripID" method="POST">
     <div style="display:none;">
-        <input type="text" name="AnimalID" value="@Model.SelectedTrip.TripID" />
+        <input type="text" name="TripID" value="@Model.SelectedTrip.TripID" />
     </div>
     <div>
         <label>Name:</label> <input type="text" name="TripName" value="@Model.SelectedTrip.TripName" />
@@ -17,8 +17,14 @@
     <div>
         <label>Trip Date:</label> <input type="text" name="TripDate" value="@Model.SelectedTrip.TripDate" />
     </div>
+    <div style="display:none;">
+        <input type="text" name="NoteID" value="@Model.SelectedTrip.TripNotes.NoteID" />
+    </div>
+    <div style="display:none;">
+        <input type="text" name="TripNotes.NoteID" value="@Model.SelectedTrip.TripNotes.NoteID" />
+    </div>
     <div>
-        <label>Trip Notes:</label> <input type="text" name="TripNotes" value="@Model.SelectedTrip.TripNotes" />
+        <label>Trip Notes:</label> <input type="text" name="TripNotes.NoteName" value="@Model.SelectedTrip.TripNotes.NoteName" />
     </div>
     <div>
         <input type="submit" value="Update Trip" />

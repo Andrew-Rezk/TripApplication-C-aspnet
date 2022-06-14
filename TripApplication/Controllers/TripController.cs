@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using TripApplication.Models;
+using TripApplication.Models.ViewModels;
 
 namespace TripApplication.Controllers
 {
@@ -25,7 +26,7 @@ namespace TripApplication.Controllers
         {
             //objective: communicate with trip data api to retrieve a list of trips
             // curl https://localhost:44326/api/TripData/ListTrips
-            
+
             string url = "listtrips";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
@@ -40,7 +41,7 @@ namespace TripApplication.Controllers
             //objective: communicate with trip data api to retrieve one trip
             // curl https://localhost:44326/api/TripData/findtrip/{id}
             HttpClient client = new HttpClient() { };
-            string url = "https://localhost:44326/api/TripData/findtrip/" +id;
+            string url = "https://localhost:44326/api/TripData/findtrip/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
@@ -60,14 +61,14 @@ namespace TripApplication.Controllers
         {
             string url = "https://localhost:44326/api/TripData/addtrip";
 
-            
+
             string jsonpayload = jss.Serialize(trip);
 
             Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
-            
+
             client.PostAsync(url, content);
 
             return RedirectToAction("list");
@@ -76,17 +77,19 @@ namespace TripApplication.Controllers
         // GET: Trip/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "https://localhost:44326/api/TripData/findtrip/" +id;
+            string url = "https://localhost:44326/api/TripData/findtrip/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
-            return View(selectedtrip);
+            UpdateTrip trip = new UpdateTrip();
+            trip.SelectedTrip = selectedtrip;
+            return View(trip);
         }
 
         // POST: Trip/update/5
         [HttpPost]
         public ActionResult update(int id, Trip trip)
         {
-            string url = "https://localhost:44326/api/TripData/updatetrip/" +id;
+            string url = "https://localhost:44326/api/TripData/updatetrip/" + id;
             string jsonpayload = jss.Serialize(trip);
 
             HttpContent content = new StringContent(jsonpayload);
@@ -104,7 +107,7 @@ namespace TripApplication.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             TripDto selectedtrip = response.Content.ReadAsAsync<TripDto>().Result;
             return View(selectedtrip);
-            
+
         }
 
         // POST: Trip/Delete/5

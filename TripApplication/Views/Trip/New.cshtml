@@ -4,6 +4,7 @@
 }
 
 <h2>Create Trip</h2>
+<a href="/trip/list">Back to List</a>
 <form action="/Trip/Create" method="POST">
     <div>
         <label>Trip Name:</label><input name="TripName" type="text" />
@@ -15,7 +16,7 @@
         <label>Trip Date:</label><input name="TripDate" type="text" />
     </div>
     <div>
-        <label>Notes:</label><input name="TripNotes" type="text" />
+        <label>Notes:</label><input name="TripNotes.NoteName" type="text" />
     </div>
     <div>
         <input type="submit" value="Add Trip" />
